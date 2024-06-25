@@ -43,5 +43,11 @@
             @endforeach
         </tbody>
     </table>
+    <th>.</th>
+    <form action="{{ route('register.form') }}" method="GET">
+        @csrf
+        @method('GET')
+        <button type="submit" class="btn btn-danger" onclick=>adicionar usuario</button>
+    </form>
 </body>
 </html>
