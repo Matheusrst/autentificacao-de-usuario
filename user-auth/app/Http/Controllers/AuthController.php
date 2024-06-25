@@ -35,7 +35,7 @@ class AuthController extends Controller
             'age' => 'required|integer',
             'gender' => 'required|string|max:10',
             'phone' => 'required|string',
-            'cep' => 'required|string|max:8',
+            'cep' => 'required|string|max:9',
             'address' => 'required|string|max:255',
             'number' => 'required|string',
             'neighborhood' => 'required|string',
@@ -71,14 +71,59 @@ class AuthController extends Controller
         return view('auth.me', compact('user'));
     }
 
+    public function edit($id)
+    {
+    $user = User::findOrFail($id);
+    return view('auth.edit', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+    $user = User::findOrFail($id);
+
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+        'cpf' => 'required|string|max:14|unique:users,cpf,' . $user->id,
+        'age' => 'required|integer',
+        'gender' => 'nullable|string|max:10',
+        'phone' => 'nullable|string|max:15',
+        'cep' => 'nullable|string|max:9',
+        'address' => 'nullable|string|max:255',
+        'number' => 'nullable|string|max:10',
+        'neighborhood' => 'nullable|string|max:255',
+        'city' => 'nullable|string|max:255',
+        'state' => 'nullable|string|max:2',
+    ]);
+
+    $user->update([
+        'name' => $request->name,
+        'email' => $request->email,
+        'cpf' => $request->cpf,
+        'age' => $request->age,
+        'gender' => $request->gender,
+        'phone' => $request->phone,
+        'cep' => $request->cep,
+        'address' => $request->address,
+        'number' => $request->number,
+        'neighborhood' => $request->neighborhood,
+        'city' => $request->city,
+        'state' => $request->state,
+        
+    ]);
+
+    return redirect()->route('users.index')
+                     ->with('success', 'User updated successfully');
+    }
+
     public function destroy($id)
-{
+    {
     $user = User::findOrFail($id);
     $user->delete();
 
     return redirect()->route('users.index')
                      ->with('success', 'User deleted successfully');
-}
+    }
 
 }
 

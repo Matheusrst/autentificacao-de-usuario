@@ -28,5 +28,9 @@ Route::get('users', [AuthController::class, 'index'])->name('users.index');
 //rotas de usuário
 Route::get('user/{id}', [AuthController::class, 'show'])->name('user.show');
 
+//rotas para editar usuario
+Route::get('user/{id}/edit', [AuthController::class, 'edit'])->name('user.edit');
+Route::put('user/{id}', [AuthController::class, 'update'])->name('user.update');
+
 //rota de exclusão de usuario
 Route::delete('user/{id}', [AuthController::class, 'destroy'])->name('user.destroy');
