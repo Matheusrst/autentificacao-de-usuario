@@ -9,6 +9,18 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function index()
+    {
+    $users = User::all();
+    return view('auth.users', compact('users'));
+    }
+
+    public function show($id)
+    {
+    $user = User::findOrFail($id);
+    return view('auth.me', compact('user'));
+    }
+
     public function showRegisterForm()
     {
         return view('auth.register');
@@ -55,7 +67,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('me');
+        return redirect()->route('users.index');
     }
 
     public function login(Request $request)

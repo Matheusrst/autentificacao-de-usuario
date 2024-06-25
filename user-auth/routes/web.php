@@ -26,10 +26,12 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-//rotas para usuario autentificados
-Route::middleware('auth')->group(function () {
-    //rota de logout
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    //rotas de usuário
-    Route::get('/me', [AuthController::class, 'me'])->name('me');
-});
+//rotas de index do usuário
+Route::get('users', [AuthController::class, 'index'])->name('users.index');
+
+//rota de logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//rotas de usuário
+Route::get('/me', [AuthController::class, 'me'])->name('me');
+Route::get('user/{id}', [AuthController::class, 'show'])->name('user.show');
