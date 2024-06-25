@@ -26,11 +26,6 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
-
     public function register(Request $request)
     {
         $request->validate([
@@ -70,27 +65,20 @@ class AuthController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function login(Request $request)
-    {
-        $credentials = $request->only('email', 'cpf', 'password');
-
-        if (Auth::attempt($credentials)) {
-            return redirect()->route('me');
-        }
-
-        return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
-    }
-
-    public function logout()
-    {
-        Auth::logout();
-        return redirect()->route('login.form');
-    }
-
     public function me()
     {
         $user = Auth::user();
         return view('auth.me', compact('user'));
     }
+
+    public function destroy($id)
+{
+    $user = User::findOrFail($id);
+    $user->delete();
+
+    return redirect()->route('users.index')
+                     ->with('success', 'User deleted successfully');
+}
+
 }
 

@@ -22,16 +22,11 @@ Route::get('/', function () {
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-//rotas de login
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-
 //rotas de index do usuário
 Route::get('users', [AuthController::class, 'index'])->name('users.index');
 
-//rota de logout
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
 //rotas de usuário
-Route::get('/me', [AuthController::class, 'me'])->name('me');
 Route::get('user/{id}', [AuthController::class, 'show'])->name('user.show');
+
+//rota de exclusão de usuario
+Route::delete('user/{id}', [AuthController::class, 'destroy'])->name('user.destroy');

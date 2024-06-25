@@ -17,9 +17,13 @@
     <p>neighborhood: {{ $user->neighborhood }}</p>
     <p>city: {{ $user->city }}</p>
     <p>state: {{ $user->state }}</p>
-    <form method="POST" action="{{ route('logout') }}">
+
+    <form action="{{ route('user.destroy', $user->id) }}" method="POST">
         @csrf
-        <button type="submit">Logout</button>
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete User</button>
     </form>
+    
+    <a href="{{ route('users.index') }}" class="btn btn-primary">Back to Users</a>
 </body>
 </html>
