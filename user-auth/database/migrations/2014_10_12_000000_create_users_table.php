@@ -17,7 +17,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('cpf')->unique();
             $table->integer('age');
+            $table->string('gender');
+            $table->string('phone');
+            $table->string('cep');
             $table->string('address');
+            $table->string('number');
+            $table->string('neighborhood');
+            $table->string('city');
+            $table->string('state');
             $table->string('password');
             $table->timestamps();
         });

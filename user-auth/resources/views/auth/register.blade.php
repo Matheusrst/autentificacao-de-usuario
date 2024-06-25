@@ -24,8 +24,36 @@
             <input type="number" id="age" name="age" required>
         </div>
         <div>
+            <label for="gender">gander:</label>
+            <input type="text" id="gender" name="gender" required>
+        </div>
+        <div>
+            <label for="phone">phone:</label>
+            <input type="text" id="phone" name="phone" required>
+        </div>
+        <div>
+            <label for="cep">cep:</label>
+            <input type="text" id="cep" name="cep" required>
+        </div>
+        <div>
             <label for="address">Address:</label>
             <input type="text" id="address" name="address" required>
+        </div>
+        <div>
+            <label for="number">number:</label>
+            <input type="text" id="number" name="number" required>
+        </div>
+        <div>
+            <label for="neighborhood">neighborhood:</label>
+            <input type="text" id="neighborhood" name="neighborhood" required>
+        </div>
+        <div>
+            <label for="city">city:</label>
+            <input type="text" id="city" name="city" required>
+        </div>
+        <div>
+            <label for="state">state:</label>
+            <input type="text" id="state" name="state" required>
         </div>
         <div>
             <label for="password">Password:</label>
