@@ -7,30 +7,50 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-//controller de autentificação
+/**
+ * controller para autentificar e registrar usuários
+ */
 class AuthController extends Controller
 {
-    //view da listagem de ususários
+    /**
+     * da listagem de ususários
+     * 
+     * @return void
+     */
     public function index()
     {
     $users = User::all();
     return view('auth.users', compact('users'));
     }
 
-    //view para o menu de usuário
+    /**
+     * view para o menu de usuário
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function show($id)
     {
     $user = User::findOrFail($id);
     return view('auth.me', compact('user'));
     }
 
-    //view para cadastro de usuário
+    /**
+     *view para cadastro de usuário
+
+     * @return void
+     */
     public function showRegisterForm()
     {
         return view('auth.register');
     }
 
-    //função para o registro de de novos usuários
+    /**
+     * função para o registro de de novos usuários
+     *
+     * @param Request $request
+     * @return void
+     */
     public function register(Request $request)
     {
         $request->validate([
@@ -70,14 +90,25 @@ class AuthController extends Controller
         return redirect()->route('users.index');
     }
 
-    //view para edição de usuários
+    /**
+     * view para edição de usuários
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function edit($id)
     {
     $user = User::findOrFail($id);
     return view('auth.edit', compact('user'));
     }
 
-    //função de edição de usários
+    /**
+     * função de edição de usários
+     *
+     * @param Request $request
+     * @param [type] $id
+     * @return void
+     */
     public function update(Request $request, $id)
     {
     $user = User::findOrFail($id);
@@ -117,7 +148,12 @@ class AuthController extends Controller
                      ->with('success', 'User updated successfully');
     }
 
-    //função para apagar um usuários cadastrados
+    /**
+     * função para apagar um usuários cadastrados
+     *
+     * @param [type] $id
+     * @return void
+     */
     public function destroy($id)
     {
     $user = User::findOrFail($id);
