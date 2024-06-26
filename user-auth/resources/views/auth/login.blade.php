@@ -1,4 +1,4 @@
-<!-- view de login -->
+<!-- view de login de usuário cadastrados -->
 <!DOCTYPE html>
 <html>
 <head>

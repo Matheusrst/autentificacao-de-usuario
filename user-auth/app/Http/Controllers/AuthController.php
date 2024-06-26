@@ -159,7 +159,7 @@ class AuthController extends Controller
     }
 
     /**
-     * função de login
+     * função de login de usuários ja cadastrados
      *
      * @param Request $request
      * @return void
@@ -176,7 +176,7 @@ class AuthController extends Controller
     }
 
     /**
-     * função de logout
+     * função de logout de usuários logados
      *
      * @return void
      */
