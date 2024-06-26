@@ -1,3 +1,4 @@
+<!-- view para listagem de todos os usuarios cadastrados -->
 <!DOCTYPE html>
 <html>
 <head>

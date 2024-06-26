@@ -1,3 +1,4 @@
+<!-- view para registro de novos usuários -->
 <!DOCTYPE html>
 <html>
 <head>
