@@ -46,6 +46,16 @@ class AuthController extends Controller
     }
 
     /**
+     * view de login
+     *
+     * @return void
+     */
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    /**
      * função para o registro de de novos usuários
      *
      * @param Request $request
@@ -147,6 +157,35 @@ class AuthController extends Controller
     return redirect()->route('users.index')
                      ->with('success', 'User updated successfully');
     }
+
+    /**
+     * função de login
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'cpf', 'password');
+
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('users.index');
+        }
+
+        return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
+    }
+
+    /**
+     * função de logout
+     *
+     * @return void
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login.form');
+    }
+
 
     /**
      * função para apagar um usuários cadastrados
