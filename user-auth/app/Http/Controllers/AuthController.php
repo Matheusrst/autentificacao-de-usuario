@@ -7,25 +7,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
+//controller de autentificação
 class AuthController extends Controller
 {
+    //view da listagem de ususários
     public function index()
     {
     $users = User::all();
     return view('auth.users', compact('users'));
     }
 
+    //view para o menu de usuário
     public function show($id)
     {
     $user = User::findOrFail($id);
     return view('auth.me', compact('user'));
     }
 
+    //view para cadastro de usuário
     public function showRegisterForm()
     {
         return view('auth.register');
     }
 
+    //função para o registro de de novos usuários
     public function register(Request $request)
     {
         $request->validate([
@@ -65,18 +70,14 @@ class AuthController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function me()
-    {
-        $user = Auth::user();
-        return view('auth.me', compact('user'));
-    }
-
+    //view para edição de usuários
     public function edit($id)
     {
     $user = User::findOrFail($id);
     return view('auth.edit', compact('user'));
     }
 
+    //função de edição de usários
     public function update(Request $request, $id)
     {
     $user = User::findOrFail($id);
@@ -116,6 +117,7 @@ class AuthController extends Controller
                      ->with('success', 'User updated successfully');
     }
 
+    //função para apagar um usuários cadastrados
     public function destroy($id)
     {
     $user = User::findOrFail($id);
