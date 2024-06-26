@@ -27,7 +27,7 @@ Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.form'
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
 //rotas de logout
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 //rotas de index do usuário
 Route::get('users', [AuthController::class, 'index'])->name('users.index');
